@@ -20,7 +20,7 @@ class SharedPreferencesService {
     this.enableLogs,
   );
 
-  static const _DatabaseVersionKey = 'sqflite_migration_database_version_key';
+  static const _DatabaseVersionKey = 'database_version_key';
 
   int get databaseVersion => _getFromDisk(_DatabaseVersionKey) ?? 0;
 
