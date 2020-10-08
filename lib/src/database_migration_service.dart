@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:sqflite_migration/src/asset_reader.dart';
-import 'package:sqflite_migration/src/exceptions/sql_migration_exception.dart';
-import 'package:sqflite_migration/src/shared_preferences_service.dart';
-import 'package:sqflite_migration/src/string_helpers.dart';
+import 'package:sqflite_migration_service/src/asset_reader.dart';
+import 'package:sqflite_migration_service/src/exceptions/sql_migration_exception.dart';
+import 'package:sqflite_migration_service/src/shared_preferences_service.dart';
+import 'package:sqflite_migration_service/src/string_helpers.dart';
 
 import 'locator.dart';
 

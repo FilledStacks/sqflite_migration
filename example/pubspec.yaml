@@ -42,7 +42,7 @@ dependencies:
 
   # Database
   sqflite:
-  sqflite_migration:
+  sqflite_migration_service:
     path: ../
 
 dev_dependencies:

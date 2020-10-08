@@ -1,6 +1,6 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite_migration_example/app/locator.dart';
-import 'package:sqflite_migration/sqflite_migration.dart';
+import 'package:sqflite_migration_service/sqflite_migration_service.dart';
 import 'package:sqflite_migration_example/models/todo.dart';
 
 const DB_NAME = 'sqflite_migration_example.sqlite';

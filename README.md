@@ -1,4 +1,4 @@
-# Sqflite Migration
+# Sqflite Migration Service
 
 At the moment, using the user_version to track the database version in a sqflite database is very inconsistent between debug deploys and even over installing a new release build.
 
@@ -11,7 +11,7 @@ To start off you have to add the package into your pubspec.yaml file.
 ```yaml
 dependencies:
   ...
-  sqflite_migration:
+  sqflite_migration_service:
 ```
 
 This package works specifically with [sqflite](https://pub.dev/packages/sqflite) and I recommend you use that one too. If you're using a different sqlite DB please file an issue with the library and I can most likely abstract the DB usage away and allow you to supply your own sqlite library. This library provides you with a single service to use. `DatabaseMigrationService`. You can register this with injectable by adding it to your third party services module or registering it normally with your service provider like below. Or if you're using Provider for Dependency Injection you simply construct it and pass it to the Provider.

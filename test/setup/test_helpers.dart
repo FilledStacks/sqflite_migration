@@ -1,8 +1,8 @@
 import 'package:mockito/mockito.dart';
 import 'package:sqflite/sqflite.dart';
-import 'package:sqflite_migration/src/asset_reader.dart';
-import 'package:sqflite_migration/src/locator.dart';
-import 'package:sqflite_migration/src/shared_preferences_service.dart';
+import 'package:sqflite_migration_service/src/asset_reader.dart';
+import 'package:sqflite_migration_service/src/locator.dart';
+import 'package:sqflite_migration_service/src/shared_preferences_service.dart';
 
 class SharedPreferencesMock extends Mock implements SharedPreferencesService {}
 

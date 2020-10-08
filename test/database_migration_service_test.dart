@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:sqflite_migration/src/exceptions/sql_migration_exception.dart';
-import 'package:sqflite_migration/src/database_migration_service.dart';
+import 'package:sqflite_migration_service/src/exceptions/sql_migration_exception.dart';
+import 'package:sqflite_migration_service/src/database_migration_service.dart';
 
 import 'setup/test_helpers.dart';
 
