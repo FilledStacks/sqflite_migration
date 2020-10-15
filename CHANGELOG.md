@@ -1,3 +1,7 @@
+## 1.0.1+1
+
+- Updates log values to be clearer about where it comes from
+
 ## 1.0.1
 
 - Updates _DatabaseVersionKey value. 

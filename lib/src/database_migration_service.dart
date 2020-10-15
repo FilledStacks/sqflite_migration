@@ -77,7 +77,7 @@ class DatabaseMigrationService {
     var databaseVersion = _sharedPreferences.databaseVersion;
 
     if (verbose) {
-      print('databaseService:$databaseVersion');
+      print('DatabaseMigrationService - Database Version: $databaseVersion');
     }
 
     // #2: Loop through the migration files supplied
@@ -88,7 +88,7 @@ class DatabaseMigrationService {
       if (migrationVersion > databaseVersion) {
         if (verbose) {
           print(
-              'Run migration for $file. This will take us from $databaseVersion to $migrationVersion');
+              'DatabaseMigrationService - Run migration for $file. This will take us from database version $databaseVersion to $migrationVersion');
         }
         // #4: Read the migration file from assets
         var migrationData = await _assetReader.readFileFromBundle(file);
@@ -100,14 +100,14 @@ class DatabaseMigrationService {
         try {
           for (var query in migrationQueries) {
             if (verbose) {
-              print('Run migration query: $query');
+              print('DatabaseMigrationService - Run migration query: $query');
             }
             // #6: Run the migration by applying all the individual queries for the migration script
             await database.rawQuery(query);
           }
           if (verbose) {
             print(
-                'Migration complete from $databaseVersion to $migrationVersion... update databaseService to $migrationVersion');
+                'DatabaseMigrationService - Migration complete from $databaseVersion to $migrationVersion... update databaseService to $migrationVersion');
           }
 
           // #7: Update the database version
@@ -115,11 +115,11 @@ class DatabaseMigrationService {
         } catch (exception) {
           // if (verbose) {
           print(
-              'Migration from $databaseVersion to $migrationVersion didn\'t run.');
+              'DatabaseMigrationService - Migration from $databaseVersion to $migrationVersion didn\'t run.');
           // }
 
           // if (verbose) {
-          print('Exception:$exception');
+          print('DatabaseMigrationService - Exception:$exception');
           // }
 
           continue;
