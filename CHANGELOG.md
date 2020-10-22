@@ -1,3 +1,7 @@
+## 1.0.1+2
+
+- Bumps get_it version to 5.x.x
+
 ## 1.0.1+1
 
 - Updates log values to be clearer about where it comes from

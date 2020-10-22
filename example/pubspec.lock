@@ -267,7 +267,7 @@ packages:
       name: get_it
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.0.4"
+    version: "5.0.1"
   get_navigation:
     dependency: transitive
     description:
@@ -615,7 +615,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "1.0.1+1"
+    version: "1.0.1+2"
   stack_trace:
     dependency: transitive
     description:
