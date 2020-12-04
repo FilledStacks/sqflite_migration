@@ -66,11 +66,20 @@ class DatabaseMigrationService {
     Database database, {
     @required List<String> migrationFiles,
     bool verbose = false,
+    String databaseVersionKey
   }) async {
     // Only perform the setup once when calling runMigration
     if (!_setupComplete) {
       await _setupLocator();
       _setupComplete = true;
+    }
+
+    if (databaseVersionKey != null) {
+      _sharedPreferences.databaseVersionKey = databaseVersionKey;
+    }
+
+    if (verbose) {
+      print('DatabaseMigrationService - Shared Preferences Key: ${_sharedPreferences.databaseVersionKey}');
     }
 
     // #1: Get the current database version from Shared Preferences

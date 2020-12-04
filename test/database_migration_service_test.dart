@@ -99,6 +99,15 @@ void main() {
             .runMigration(database, migrationFiles: ['1_migration.sql']);
         verify(sharedPreferences.databaseVersion = 1);
       });
+
+      test('When given databaseVersionKey parameter, it should be set in SharedPreferencesService', () async {
+        var database = getDatabaseMock();
+        var sharedPreferences = getAndRegisterSharedPreferencesMock();
+        var migrationHelper = DatabaseMigrationService();
+        final String databaseVersionKey = 'custom_db_version_key';
+        await migrationHelper.runMigration(database, migrationFiles: [], databaseVersionKey: databaseVersionKey);
+        verify(sharedPreferences.databaseVersionKey = databaseVersionKey);
+      });
     });
 
     group('getMigrationQueriesFromScript -', () {
