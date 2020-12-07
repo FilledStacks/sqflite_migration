@@ -1,3 +1,7 @@
+## 1.0.2
+
+- Adds function to reset database version
+
 ## 1.0.1+2
 
 - Bumps get_it version to 5.x.x

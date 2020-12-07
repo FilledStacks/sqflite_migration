@@ -62,6 +62,14 @@ class DatabaseMigrationService {
     }
   }
 
+  /// Resets the database version to 0
+  void resetVersion() {
+    _sharedPreferences.databaseVersion = 0;
+  }
+
+  /// Runs the migrations on the [database] using the files listed in the [migrationFiles] list.
+  ///
+  /// Set verbose: true if you want to print out all migration logs
   Future runMigration(
     Database database, {
     @required List<String> migrationFiles,
@@ -113,14 +121,10 @@ class DatabaseMigrationService {
           // #7: Update the database version
           _sharedPreferences.databaseVersion = migrationVersion;
         } catch (exception) {
-          // if (verbose) {
           print(
               'DatabaseMigrationService - Migration from $databaseVersion to $migrationVersion didn\'t run.');
-          // }
 
-          // if (verbose) {
           print('DatabaseMigrationService - Exception:$exception');
-          // }
 
           continue;
         }
