@@ -1,3 +1,7 @@
+## 1.0.3
+
+- Adds parameter to skip a failing migration and update the database version
+
 ## 1.0.2
 
 - Adds function to reset database version
@@ -12,7 +16,7 @@
 
 ## 1.0.1
 
-- Updates _DatabaseVersionKey value. 
+- Updates \_DatabaseVersionKey value.
 
 ## 1.0.0 - First release
 

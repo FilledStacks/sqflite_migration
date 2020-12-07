@@ -74,6 +74,11 @@ class DatabaseMigrationService {
     Database database, {
     @required List<String> migrationFiles,
     bool verbose = false,
+
+    /// When a migration fails update the version number to the one that failed and continue.
+    /// This should be used when you have migrations that might fail due to previous errors in
+    /// your migration logic but you don't want that failing migration to keep running on every start.
+    bool skipFailingMigration = false,
   }) async {
     // Only perform the setup once when calling runMigration
     if (!_setupComplete) {
@@ -123,6 +128,12 @@ class DatabaseMigrationService {
         } catch (exception) {
           print(
               'DatabaseMigrationService - Migration from $databaseVersion to $migrationVersion didn\'t run.');
+
+          if (skipFailingMigration) {
+            print(
+                'DatabaseMigrationService - Even though migration failed we\'re updating the databaseVersion from $databaseVersion to $migrationVersion');
+            _sharedPreferences.databaseVersion = migrationVersion;
+          }
 
           print('DatabaseMigrationService - Exception:$exception');
 
