@@ -10,12 +10,15 @@ class AssetReaderMock extends Mock implements AssetReader {}
 
 class DatabaseMock extends Mock implements Database {}
 
+const String defaultDatabaseVersionKey = 'database_version_key';
+
 SharedPreferencesService getAndRegisterSharedPreferencesMock(
-    {int databaseVersion = 0}) {
+    {int databaseVersion = 0, String databaseVersionKey = defaultDatabaseVersionKey}) {
   _removeRegistrationIfExists<SharedPreferencesService>();
   var preferencesMock = SharedPreferencesMock();
 
   when(preferencesMock.databaseVersion).thenReturn(databaseVersion);
+  when(preferencesMock.databaseVersionKey).thenReturn(databaseVersionKey);
 
   locator.registerSingleton<SharedPreferencesService>(preferencesMock);
   return preferencesMock;
