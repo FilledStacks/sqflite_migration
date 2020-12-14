@@ -1,3 +1,7 @@
+## 1.0.4
+
+- Adds ability to set a custom database version key
+
 ## 1.0.3
 
 - Adds parameter to skip a failing migration and update the database version
