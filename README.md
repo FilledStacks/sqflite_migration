@@ -111,3 +111,18 @@ This is the part where the manual comment comes in when adding a new migration h
 2. Add the name file name EXACTLY as it is into the list of `migrationFiles` for the `runMigration` function.
 
 And that's basically it. Migration files in sql format, separated by semi-colons and automatically applied based on the version of your current database which persists properly over deployments. If you have any issues, don't hesitate to file it. 
+
+### Custom database version key in shared preferences
+
+The database version number is stored in shared preferences with the key `database_version_key` by default. That key can be changed by passing the parameter `databaseVersionKey` when calling `runMigration` of `DatabaseService`.
+
+```dart
+  await _migrationService.runMigration(
+    _database,
+    migrationFiles: [
+      '1_create_schema.sql',
+      '2_add_description.sql',
+    ],
+    databaseVersionKey: 'custom_db_version_key'
+  );
+```

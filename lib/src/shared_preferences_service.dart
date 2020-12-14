@@ -20,11 +20,16 @@ class SharedPreferencesService {
     this.enableLogs,
   );
 
-  static const _DatabaseVersionKey = 'database_version_key';
+  static const _DefaultDatabaseVersionKey = 'database_version_key';
+  String _databaseVersionKey;
 
-  int get databaseVersion => _getFromDisk(_DatabaseVersionKey) ?? 0;
+  String get databaseVersionKey => _databaseVersionKey ?? _DefaultDatabaseVersionKey;
 
-  set databaseVersion(int value) => _saveToDisk(_DatabaseVersionKey, value);
+  set databaseVersionKey(String key) => _databaseVersionKey = key;
+
+  int get databaseVersion => _getFromDisk(databaseVersionKey) ?? 0;
+
+  set databaseVersion(int value) => _saveToDisk(databaseVersionKey, value);
 
   void clearPreferences() {
     _preferences.clear();

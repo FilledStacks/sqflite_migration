@@ -74,7 +74,8 @@ class DatabaseMigrationService {
     Database database, {
     @required List<String> migrationFiles,
     bool verbose = false,
-
+    String databaseVersionKey,
+      
     /// When a migration fails update the version number to the one that failed and continue.
     /// This should be used when you have migrations that might fail due to previous errors in
     /// your migration logic but you don't want that failing migration to keep running on every start.
@@ -84,6 +85,14 @@ class DatabaseMigrationService {
     if (!_setupComplete) {
       await _setupLocator();
       _setupComplete = true;
+    }
+
+    if (databaseVersionKey != null) {
+      _sharedPreferences.databaseVersionKey = databaseVersionKey;
+    }
+
+    if (verbose) {
+      print('DatabaseMigrationService - Shared Preferences Key: ${_sharedPreferences.databaseVersionKey}');
     }
 
     // #1: Get the current database version from Shared Preferences
