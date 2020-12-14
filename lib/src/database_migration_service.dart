@@ -62,11 +62,24 @@ class DatabaseMigrationService {
     }
   }
 
+  /// Resets the database version to 0
+  void resetVersion() {
+    _sharedPreferences.databaseVersion = 0;
+  }
+
+  /// Runs the migrations on the [database] using the files listed in the [migrationFiles] list.
+  ///
+  /// Set verbose: true if you want to print out all migration logs
   Future runMigration(
     Database database, {
     @required List<String> migrationFiles,
     bool verbose = false,
-    String databaseVersionKey
+    String databaseVersionKey,
+      
+    /// When a migration fails update the version number to the one that failed and continue.
+    /// This should be used when you have migrations that might fail due to previous errors in
+    /// your migration logic but you don't want that failing migration to keep running on every start.
+    bool skipFailingMigration = false,
   }) async {
     // Only perform the setup once when calling runMigration
     if (!_setupComplete) {
@@ -122,14 +135,16 @@ class DatabaseMigrationService {
           // #7: Update the database version
           _sharedPreferences.databaseVersion = migrationVersion;
         } catch (exception) {
-          // if (verbose) {
           print(
               'DatabaseMigrationService - Migration from $databaseVersion to $migrationVersion didn\'t run.');
-          // }
 
-          // if (verbose) {
+          if (skipFailingMigration) {
+            print(
+                'DatabaseMigrationService - Even though migration failed we\'re updating the databaseVersion from $databaseVersion to $migrationVersion');
+            _sharedPreferences.databaseVersion = migrationVersion;
+          }
+
           print('DatabaseMigrationService - Exception:$exception');
-          // }
 
           continue;
         }
