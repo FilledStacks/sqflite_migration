@@ -23,6 +23,7 @@ class DatabaseService {
       migrationFiles: [
         '1_create_schema.sql',
         '2_add_description.sql',
+        '3_creation_timestamp.sql',
       ],
     );
   }

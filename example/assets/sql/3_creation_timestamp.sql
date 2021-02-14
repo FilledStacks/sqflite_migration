@@ -1,0 +1,1 @@
+ALTER TABLE todos ADD created_at TEXT; -- line end comment
