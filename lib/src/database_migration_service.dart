@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:sqflite_migration_service/src/asset_reader.dart';
@@ -20,7 +22,29 @@ class DatabaseMigrationService {
   List<String> getMigrationQueriesFromScript(String scriptContent,
       {String fileName}) {
     try {
-      return scriptContent
+      LineSplitter ls = LineSplitter();
+      String plainSQL = ls
+          .convert(scriptContent)
+          .fold(<String>[], (accum, line) {
+            int commentPos = line.indexOf('--');
+            switch (commentPos) {
+              case -1:
+                // no SQL comment, passthrough
+                accum.add(line);
+                break;
+              case 0:
+                // whole line comment, skip
+                break;
+              default:
+                // otherwhise, an end of line comment
+                accum.add(line.substring(0, commentPos));
+            }
+            return accum;
+          })
+          .toList()
+          .join('\n');
+
+      return plainSQL
           .split(';')
           .map((queryMultiLine) =>
               queryMultiLine.split('\n').map((e) => e.trim()).toList().join(''))
@@ -75,7 +99,7 @@ class DatabaseMigrationService {
     @required List<String> migrationFiles,
     bool verbose = false,
     String databaseVersionKey,
-      
+
     /// When a migration fails update the version number to the one that failed and continue.
     /// This should be used when you have migrations that might fail due to previous errors in
     /// your migration logic but you don't want that failing migration to keep running on every start.
@@ -92,7 +116,8 @@ class DatabaseMigrationService {
     }
 
     if (verbose) {
-      print('DatabaseMigrationService - Shared Preferences Key: ${_sharedPreferences.databaseVersionKey}');
+      print(
+          'DatabaseMigrationService - Shared Preferences Key: ${_sharedPreferences.databaseVersionKey}');
     }
 
     // #1: Get the current database version from Shared Preferences
