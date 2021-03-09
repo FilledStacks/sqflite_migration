@@ -1,6 +1,6 @@
 name: sqflite_migration_service
 description: A new Flutter package project.
-version: 1.0.4
+version: 1.0.5
 homepage: https://github.com/FilledStacks/sqflite_migration
 
 environment:
@@ -11,15 +11,15 @@ dependencies:
   flutter:
     sdk: flutter
 
-  sqflite: ^1.1.7
-  shared_preferences: ^0.5.6+2
-  get_it: ^5.0.1
+  sqflite: ^2.0.0+2
+  shared_preferences: ^2.0.3
+  get_it: ^6.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  mockito:
+  mockito: ^5.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

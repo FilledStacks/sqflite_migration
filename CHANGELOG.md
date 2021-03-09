@@ -1,3 +1,7 @@
+## 1.0.5
+
+- Updated package dependencies to latest
+
 ## 1.0.4
 
 - Adds ability to set a custom database version key
