@@ -1,3 +1,7 @@
+## 1.0.5+1
+
+- Reduces get_it package to 5.0.6
+
 ## 1.0.5
 
 - Updated package dependencies to latest
