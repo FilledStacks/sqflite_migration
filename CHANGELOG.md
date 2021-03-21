@@ -1,3 +1,7 @@
+## 1.0.6
+
+- Adds support for comments in the sql files
+
 ## 1.0.5+2
 
 - Bumps get_it package up again :/ to 6.0.0 
