@@ -1,11 +1,11 @@
 name: sqflite_migration_service
 description: A new Flutter package project.
-version: 1.0.5+1
+version: 1.0.5+2
 homepage: https://github.com/FilledStacks/sqflite_migration
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
-  flutter: ">=1.17.0 <2.0.0"
+  flutter: ">=1.17.0"
 
 dependencies:
   flutter:
@@ -13,7 +13,7 @@ dependencies:
 
   sqflite: ^2.0.0+2
   shared_preferences: ^2.0.3
-  get_it: ^5.0.6
+  get_it: ^6.0.0
 
 dev_dependencies:
   flutter_test:

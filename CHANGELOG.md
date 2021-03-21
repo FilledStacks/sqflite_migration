@@ -1,3 +1,9 @@
+## 1.0.5+2
+
+- Bumps get_it package up again :/ to 6.0.0 
+
+now there's two versions available for use that can be pinned too for the null safety migration
+
 ## 1.0.5+1
 
 - Reduces get_it package to 5.0.6
