@@ -100,18 +100,24 @@ void main() {
         verify(sharedPreferences.databaseVersion = 1);
       });
 
-      test('When given databaseVersionKey parameter, it should be set in SharedPreferencesService', () async {
+      test(
+          'When given databaseVersionKey parameter, it should be set in SharedPreferencesService',
+          () async {
         final String databaseVersionKey = 'custom_db_version_key';
         var database = getDatabaseMock();
-        var sharedPreferences = getAndRegisterSharedPreferencesMock(databaseVersionKey: databaseVersionKey);
+        var sharedPreferences = getAndRegisterSharedPreferencesMock(
+            databaseVersionKey: databaseVersionKey);
         var migrationHelper = DatabaseMigrationService();
-        await migrationHelper.runMigration(database, migrationFiles: [], databaseVersionKey: databaseVersionKey);
+        await migrationHelper.runMigration(database,
+            migrationFiles: [], databaseVersionKey: databaseVersionKey);
         verify(sharedPreferences.databaseVersionKey = databaseVersionKey);
         expect(sharedPreferences.databaseVersionKey, databaseVersionKey);
       });
     });
 
-    test('When not given databaseVersionKey parameter, it should not be set in SharedPreferences and default value should be returned', () async {
+    test(
+        'When not given databaseVersionKey parameter, it should not be set in SharedPreferences and default value should be returned',
+        () async {
       var database = getDatabaseMock();
       var sharedPreferences = getAndRegisterSharedPreferencesMock();
       var migrationHelper = DatabaseMigrationService();
@@ -161,6 +167,44 @@ void main() {
             Add table types (
               name TEXT,
               selected INT,
+            );
+            ''';
+        var migrationHelper = DatabaseMigrationService();
+        var migrationQueries =
+            migrationHelper.getMigrationQueriesFromScript(content);
+        expect(migrationQueries.first, 'Add Table orders (id INT,token TEXT,)');
+      });
+
+      test(
+          'When given a string with 2 queries and comments we should return each query as 1 line',
+          () {
+        var content = '''
+            -- Add orders with a token
+            Add Table orders (
+              id INT,
+              token TEXT,
+            );
+    
+            -- Add tables with a selected value
+            Add table types (
+              name TEXT,
+              selected INT,
+            );
+            ''';
+        var migrationHelper = DatabaseMigrationService();
+        var migrationQueries =
+            migrationHelper.getMigrationQueriesFromScript(content);
+        expect(migrationQueries.first, 'Add Table orders (id INT,token TEXT,)');
+      });
+
+      test(
+          'When given a string with comments in the line, should not pass it into the query',
+          () {
+        var content = '''
+            
+            Add Table orders (
+              id INT, -- Automatically generated id sent from the backend
+              token TEXT, -- Stores the token for the order
             );
             ''';
         var migrationHelper = DatabaseMigrationService();
