@@ -40,9 +40,10 @@ To keep things readable, the best approach we have is to keep the files separate
 Each query in the file has to be separated by a semi-colon. Here is an example of a schema file that we have in one of our projects.
 
 ```sql
+-- SQL full line comments are supported
 CREATE TABLE user_address(
   id INTEGER PRIMARY KEY,
-  customerId INT,
+  customerId INT,  -- and SQL line end comments are also supported
   latitude FLOAT,
   longitude FLOAT,
   customerNotes TEXT,
