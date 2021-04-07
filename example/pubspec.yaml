@@ -18,7 +18,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.7.0 <3.0.0"
+  sdk: ">=2.12.0 <3.0.0"
 
 dependencies:
   flutter:
@@ -29,19 +29,19 @@ dependencies:
   cupertino_icons: ^1.0.0
 
   # Application framework
-  stacked:
-  stacked_services:
-  flutter_hooks:
+  stacked: ^2.0.2
+  stacked_services: ^0.8.2
+  flutter_hooks: ^0.16.0
 
   # data models
-  freezed_annotation:
-  json_annotation: ^3.0.1
+  freezed_annotation: ^0.14.1
+  json_annotation: ^4.0.1
 
   # Service location
-  get_it:
+  get_it: ^6.0.0
 
   # Database
-  sqflite:
+  sqflite: ^2.0.0+3
   sqflite_migration_service:
     path: ../
 
@@ -50,8 +50,8 @@ dev_dependencies:
     sdk: flutter
 
   build_runner:
-  freezed:
-  json_serializable: ^3.2.5
+  freezed: ^0.14.1+2
+  json_serializable: ^4.1.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'todo.dart';
+part of todo;
 
 // **************************************************************************
 // JsonSerializableGenerator
@@ -8,10 +8,10 @@ part of 'todo.dart';
 
 _$_Todo _$_$_TodoFromJson(Map<String, dynamic> json) {
   return _$_Todo(
-    id: json['id'] as int,
+    id: json['id'] as int?,
     title: json['title'] as String,
-    description: json['description'] as String,
-    complete: json['complete'] as int ?? 0,
+    description: json['description'] as String?,
+    complete: json['complete'] as int? ?? 0,
   );
 }
 

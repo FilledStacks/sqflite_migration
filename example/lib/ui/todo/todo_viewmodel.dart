@@ -21,8 +21,11 @@ class TodoViewModel extends FutureViewModel<List<Todo>> {
   @override
   Future<List<Todo>> futureToRun() => _database.getTodos();
 
-  Future setCompleteForItem(int index, bool value) async {
-    await _database.updateCompleteForTodo(id: data[index].id, complete: value);
+  Future<void> setCompleteForItem(int index, bool value) async {
+    await _database.updateCompleteForTodo(
+      id: data![index].id!,
+      complete: value,
+    );
 
     // Initialise will rerun the initial FutureViewModel logic which will
     // 1. Run the Future provided to futureToRun()

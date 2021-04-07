@@ -7,7 +7,7 @@ import 'package:stacked/stacked.dart';
 ///
 /// After initialisation the ViewModel will navigate to the intended view
 class StartupView extends StatelessWidget {
-  const StartupView({Key key}) : super(key: key);
+  const StartupView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

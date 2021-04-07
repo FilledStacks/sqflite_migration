@@ -1,13 +1,17 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
 
-part of 'todo.dart';
+part of todo;
 
 // **************************************************************************
 // FreezedGenerator
 // **************************************************************************
 
 T _$identity<T>(T value) => value;
+
+final _privateConstructorUsedError = UnsupportedError(
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+
 Todo _$TodoFromJson(Map<String, dynamic> json) {
   return _Todo.fromJson(json);
 }
@@ -16,9 +20,8 @@ Todo _$TodoFromJson(Map<String, dynamic> json) {
 class _$TodoTearOff {
   const _$TodoTearOff();
 
-// ignore: unused_element
   _Todo call(
-      {int id, @required String title, String description, int complete = 0}) {
+      {int? id, required String title, String? description, int complete = 0}) {
     return _Todo(
       id: id,
       title: title,
@@ -27,32 +30,31 @@ class _$TodoTearOff {
     );
   }
 
-// ignore: unused_element
   Todo fromJson(Map<String, Object> json) {
     return Todo.fromJson(json);
   }
 }
 
 /// @nodoc
-// ignore: unused_element
 const $Todo = _$TodoTearOff();
 
 /// @nodoc
 mixin _$Todo {
-  int get id;
-  String get title;
-  String get description;
-  int get complete;
+  int? get id => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  int get complete => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson();
-  $TodoCopyWith<Todo> get copyWith;
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $TodoCopyWith<Todo> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $TodoCopyWith<$Res> {
   factory $TodoCopyWith(Todo value, $Res Function(Todo) then) =
       _$TodoCopyWithImpl<$Res>;
-  $Res call({int id, String title, String description, int complete});
+  $Res call({int? id, String title, String? description, int complete});
 }
 
 /// @nodoc
@@ -65,17 +67,28 @@ class _$TodoCopyWithImpl<$Res> implements $TodoCopyWith<$Res> {
 
   @override
   $Res call({
-    Object id = freezed,
-    Object title = freezed,
-    Object description = freezed,
-    Object complete = freezed,
+    Object? id = freezed,
+    Object? title = freezed,
+    Object? description = freezed,
+    Object? complete = freezed,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed ? _value.id : id as int,
-      title: title == freezed ? _value.title : title as String,
-      description:
-          description == freezed ? _value.description : description as String,
-      complete: complete == freezed ? _value.complete : complete as int,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      complete: complete == freezed
+          ? _value.complete
+          : complete // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -85,7 +98,7 @@ abstract class _$TodoCopyWith<$Res> implements $TodoCopyWith<$Res> {
   factory _$TodoCopyWith(_Todo value, $Res Function(_Todo) then) =
       __$TodoCopyWithImpl<$Res>;
   @override
-  $Res call({int id, String title, String description, int complete});
+  $Res call({int? id, String title, String? description, int complete});
 }
 
 /// @nodoc
@@ -99,17 +112,28 @@ class __$TodoCopyWithImpl<$Res> extends _$TodoCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object id = freezed,
-    Object title = freezed,
-    Object description = freezed,
-    Object complete = freezed,
+    Object? id = freezed,
+    Object? title = freezed,
+    Object? description = freezed,
+    Object? complete = freezed,
   }) {
     return _then(_Todo(
-      id: id == freezed ? _value.id : id as int,
-      title: title == freezed ? _value.title : title as String,
-      description:
-          description == freezed ? _value.description : description as String,
-      complete: complete == freezed ? _value.complete : complete as int,
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int?,
+      title: title == freezed
+          ? _value.title
+          : title // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      complete: complete == freezed
+          ? _value.complete
+          : complete // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -118,20 +142,18 @@ class __$TodoCopyWithImpl<$Res> extends _$TodoCopyWithImpl<$Res>
 
 /// @nodoc
 class _$_Todo extends _Todo {
-  _$_Todo({this.id, @required this.title, this.description, this.complete = 0})
-      : assert(title != null),
-        assert(complete != null),
-        super._();
+  _$_Todo({this.id, required this.title, this.description, this.complete = 0})
+      : super._();
 
   factory _$_Todo.fromJson(Map<String, dynamic> json) =>
       _$_$_TodoFromJson(json);
 
   @override
-  final int id;
+  final int? id;
   @override
   final String title;
   @override
-  final String description;
+  final String? description;
   @JsonKey(defaultValue: 0)
   @override
   final int complete;
@@ -165,6 +187,7 @@ class _$_Todo extends _Todo {
       const DeepCollectionEquality().hash(description) ^
       const DeepCollectionEquality().hash(complete);
 
+  @JsonKey(ignore: true)
   @override
   _$TodoCopyWith<_Todo> get copyWith =>
       __$TodoCopyWithImpl<_Todo>(this, _$identity);
@@ -176,23 +199,24 @@ class _$_Todo extends _Todo {
 }
 
 abstract class _Todo extends Todo {
-  _Todo._() : super._();
   factory _Todo(
-      {int id,
-      @required String title,
-      String description,
+      {int? id,
+      required String title,
+      String? description,
       int complete}) = _$_Todo;
+  _Todo._() : super._();
 
   factory _Todo.fromJson(Map<String, dynamic> json) = _$_Todo.fromJson;
 
   @override
-  int get id;
+  int? get id => throw _privateConstructorUsedError;
   @override
-  String get title;
+  String get title => throw _privateConstructorUsedError;
   @override
-  String get description;
+  String? get description => throw _privateConstructorUsedError;
   @override
-  int get complete;
+  int get complete => throw _privateConstructorUsedError;
   @override
-  _$TodoCopyWith<_Todo> get copyWith;
+  @JsonKey(ignore: true)
+  _$TodoCopyWith<_Todo> get copyWith => throw _privateConstructorUsedError;
 }
