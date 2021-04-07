@@ -4,11 +4,7 @@ import 'package:sqflite_migration_service/src/asset_reader.dart';
 import 'package:sqflite_migration_service/src/locator.dart';
 import 'package:sqflite_migration_service/src/shared_preferences_service.dart';
 
-class SharedPreferencesMock extends Mock implements SharedPreferencesService {}
-
-class AssetReaderMock extends Mock implements AssetReader {}
-
-class DatabaseMock extends Mock implements Database {}
+import 'mocked_classes.dart';
 
 const String defaultDatabaseVersionKey = 'database_version_key';
 
@@ -17,7 +13,7 @@ SharedPreferencesService getAndRegisterSharedPreferencesMock({
   String databaseVersionKey = defaultDatabaseVersionKey,
 }) {
   _removeRegistrationIfExists<SharedPreferencesService>();
-  var preferencesMock = SharedPreferencesMock();
+  var preferencesMock = MockSharedPreferencesService();
 
   when(preferencesMock.databaseVersion).thenReturn(databaseVersion);
   when(preferencesMock.databaseVersionKey).thenReturn(databaseVersionKey);
@@ -28,9 +24,9 @@ SharedPreferencesService getAndRegisterSharedPreferencesMock({
 
 AssetReader getAndRegisterAssetReaderMock({String? fileContent = ''}) {
   _removeRegistrationIfExists<AssetReader>();
-  var mock = AssetReaderMock();
+  var mock = MockAssetReader();
 
-  when(mock.readFileFromBundle(""))
+  when(mock.readFileFromBundle(any))
       .thenAnswer((realInvocation) => Future.value(fileContent));
 
   locator.registerSingleton<AssetReader>(mock);
@@ -38,7 +34,7 @@ AssetReader getAndRegisterAssetReaderMock({String? fileContent = ''}) {
 }
 
 Database getDatabaseMock() {
-  var mock = DatabaseMock();
+  var mock = MockDatabase();
   return mock;
 }
 

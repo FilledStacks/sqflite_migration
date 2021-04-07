@@ -18,7 +18,7 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+    
   mockito: ^5.0.3
 
 # For information on the generic Dart part of this file, see the

@@ -23,18 +23,21 @@ void main() {
       });
 
       test(
-          'When asset reader returns null for file, should throw Sql Migration',
-          () async {
-        getAndRegisterAssetReaderMock(fileContent: null);
-        var migrationHelper = DatabaseMigrationService();
+        'When asset reader returns null for file, should throw Sql Migration Exception',
+        () async {
+          getAndRegisterAssetReaderMock(fileContent: null);
+          var migrationHelper = DatabaseMigrationService();
 
-        expect(
-          () async => await migrationHelper
-              .runMigration(null, migrationFiles: ['1_migration']),
-          throwsA(predicate(
-              (dynamic exception) => exception is SqlMigrationException)),
-        );
-      });
+          expect(
+            () async => await migrationHelper
+                .runMigration(null, migrationFiles: ['1_migration']),
+            throwsA(predicate(
+                (dynamic exception) => exception is SqlMigrationException)),
+          );
+        },
+        skip:
+            "Test Skipped cause the asset reader will never return a null value or else it'll throw a TypeError",
+      );
 
       test(
           'When 1_migration.sql passed to constructor, should get content for 1_migration.sql from asset reader',
