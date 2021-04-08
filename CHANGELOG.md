@@ -1,10 +1,14 @@
+## 2.0.0-nullsafety.0
+
+- Add nullsafety
+
 ## 1.0.6
 
 - Adds support for comments in the sql files
 
 ## 1.0.5+2
 
-- Bumps get_it package up again :/ to 6.0.0 
+- Bumps get_it package up again :/ to 6.0.0
 
 now there's two versions available for use that can be pinned too for the null safety migration
 

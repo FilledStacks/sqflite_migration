@@ -11,8 +11,8 @@ import 'locator.dart';
 
 /// Contains Database migration functionality
 class DatabaseMigrationService {
-  SharedPreferencesService _sharedPreferences;
-  AssetReader _assetReader;
+  SharedPreferencesService? _sharedPreferences;
+  AssetReader? _assetReader;
 
   DatabaseMigrationService();
 
@@ -20,12 +20,12 @@ class DatabaseMigrationService {
 
   @visibleForTesting
   List<String> getMigrationQueriesFromScript(String scriptContent,
-      {String fileName}) {
+      {String? fileName}) {
     try {
       LineSplitter ls = LineSplitter();
       String plainSQL = ls
           .convert(scriptContent)
-          .fold(<String>[], (accum, line) {
+          .fold(<String>[], (dynamic accum, line) {
             int commentPos = line.indexOf('--');
             switch (commentPos) {
               case -1:
@@ -88,17 +88,17 @@ class DatabaseMigrationService {
 
   /// Resets the database version to 0
   void resetVersion() {
-    _sharedPreferences.databaseVersion = 0;
+    _sharedPreferences!.databaseVersion = 0;
   }
 
   /// Runs the migrations on the [database] using the files listed in the [migrationFiles] list.
   ///
   /// Set verbose: true if you want to print out all migration logs
   Future runMigration(
-    Database database, {
-    @required List<String> migrationFiles,
+    Database? database, {
+    required List<String> migrationFiles,
     bool verbose = false,
-    String databaseVersionKey,
+    String? databaseVersionKey,
 
     /// When a migration fails update the version number to the one that failed and continue.
     /// This should be used when you have migrations that might fail due to previous errors in
@@ -112,16 +112,16 @@ class DatabaseMigrationService {
     }
 
     if (databaseVersionKey != null) {
-      _sharedPreferences.databaseVersionKey = databaseVersionKey;
+      _sharedPreferences!.databaseVersionKey = databaseVersionKey;
     }
 
     if (verbose) {
       print(
-          'DatabaseMigrationService - Shared Preferences Key: ${_sharedPreferences.databaseVersionKey}');
+          'DatabaseMigrationService - Shared Preferences Key: ${_sharedPreferences!.databaseVersionKey}');
     }
 
     // #1: Get the current database version from Shared Preferences
-    var databaseVersion = _sharedPreferences.databaseVersion;
+    var databaseVersion = _sharedPreferences!.databaseVersion;
 
     if (verbose) {
       print('DatabaseMigrationService - Database Version: $databaseVersion');
@@ -129,7 +129,7 @@ class DatabaseMigrationService {
 
     // #2: Loop through the migration files supplied
     for (var file in migrationFiles) {
-      var migrationVersion = int.tryParse(file.split('_').first);
+      var migrationVersion = int.tryParse(file.split('_').first)!;
 
       // #3: if the migration file version > databaseService
       if (migrationVersion > databaseVersion) {
@@ -138,7 +138,7 @@ class DatabaseMigrationService {
               'DatabaseMigrationService - Run migration for $file. This will take us from database version $databaseVersion to $migrationVersion');
         }
         // #4: Read the migration file from assets
-        var migrationData = await _assetReader.readFileFromBundle(file);
+        var migrationData = await _assetReader!.readFileFromBundle(file);
 
         // #5: Get the individual queries from the migration script
         var migrationQueries =
@@ -150,7 +150,7 @@ class DatabaseMigrationService {
               print('DatabaseMigrationService - Run migration query: $query');
             }
             // #6: Run the migration by applying all the individual queries for the migration script
-            await database.rawQuery(query);
+            await database!.rawQuery(query);
           }
           if (verbose) {
             print(
@@ -158,7 +158,7 @@ class DatabaseMigrationService {
           }
 
           // #7: Update the database version
-          _sharedPreferences.databaseVersion = migrationVersion;
+          _sharedPreferences!.databaseVersion = migrationVersion;
         } catch (exception) {
           print(
               'DatabaseMigrationService - Migration from $databaseVersion to $migrationVersion didn\'t run.');
@@ -166,7 +166,7 @@ class DatabaseMigrationService {
           if (skipFailingMigration) {
             print(
                 'DatabaseMigrationService - Even though migration failed we\'re updating the databaseVersion from $databaseVersion to $migrationVersion');
-            _sharedPreferences.databaseVersion = migrationVersion;
+            _sharedPreferences!.databaseVersion = migrationVersion;
           }
 
           print('DatabaseMigrationService - Exception:$exception');

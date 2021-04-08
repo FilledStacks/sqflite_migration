@@ -1,16 +1,19 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPreferencesService {
-  static SharedPreferencesService _instance;
+  static SharedPreferencesService? _instance;
 
-  static Future<SharedPreferencesService> getInstance(
-      {bool enableLogs = false}) async {
+  static Future<SharedPreferencesService> getInstance({
+    bool enableLogs = false,
+  }) async {
     if (_instance == null) {
       _instance = SharedPreferencesService._(
-          await SharedPreferences.getInstance(), enableLogs);
+        await SharedPreferences.getInstance(),
+        enableLogs,
+      );
     }
 
-    return _instance;
+    return _instance!;
   }
 
   final enableLogs;
@@ -21,11 +24,12 @@ class SharedPreferencesService {
   );
 
   static const _DefaultDatabaseVersionKey = 'database_version_key';
-  String _databaseVersionKey;
+  String? _databaseVersionKey;
 
-  String get databaseVersionKey => _databaseVersionKey ?? _DefaultDatabaseVersionKey;
+  String get databaseVersionKey =>
+      _databaseVersionKey ?? _DefaultDatabaseVersionKey;
 
-  set databaseVersionKey(String key) => _databaseVersionKey = key;
+  set databaseVersionKey(String? key) => _databaseVersionKey = key;
 
   int get databaseVersion => _getFromDisk(databaseVersionKey) ?? 0;
 

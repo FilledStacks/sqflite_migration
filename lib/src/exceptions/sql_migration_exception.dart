@@ -1,5 +1,5 @@
 class SqlMigrationException implements Exception {
-  final String message;
-  
+  final String? message;
+
   SqlMigrationException(this.message);
 }

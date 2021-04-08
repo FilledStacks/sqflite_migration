@@ -4,7 +4,7 @@ import 'package:sqflite_migration_example/ui/todo/todo_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
 class TodoView extends HookWidget {
-  const TodoView({Key key}) : super(key: key);
+  const TodoView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -45,10 +45,10 @@ class TodoView extends HookWidget {
                   decoration: InputDecoration(hintText: 'Add a description'),
                 ),
               ),
-              if (model.dataReady && model.data.isNotEmpty)
+              if (model.dataReady && model.data!.isNotEmpty)
                 Expanded(
                   child: ListView.builder(
-                    itemCount: model.data.length,
+                    itemCount: model.data!.length,
                     itemBuilder: (context, index) => Container(
                       padding: const EdgeInsets.symmetric(horizontal: 25),
                       height: 40,
@@ -59,24 +59,24 @@ class TodoView extends HookWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(model.data[index].title),
+                              Text(model.data![index].title),
                               Text(
-                                model.data[index].description ?? '',
+                                model.data![index].description ?? '',
                                 style: TextStyle(color: Colors.grey),
                               )
                             ],
                           ),
                           Checkbox(
-                            value: model.data[index].isComplete,
+                            value: model.data![index].isComplete,
                             onChanged: (value) =>
-                                model.setCompleteForItem(index, value),
+                                model.setCompleteForItem(index, value!),
                           )
                         ],
                       ),
                     ),
                   ),
                 ),
-              if (model.dataReady && model.data.isEmpty)
+              if (model.dataReady && model.data!.isEmpty)
                 Text('No todo\'s yet. Add some'),
             ],
           ),

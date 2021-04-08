@@ -11,7 +11,7 @@ const String TodoTableName = 'todos';
 class DatabaseService {
   final _migrationService = locator<DatabaseMigrationService>();
 
-  Database _database;
+  late Database _database;
 
   /// Initialises the database and runs the migration schema using the
   /// [DatabaseMigrationService]
@@ -30,12 +30,12 @@ class DatabaseService {
 
   /// Gets all the Todo's from the database
   Future<List<Todo>> getTodos() async {
-    List<Map> todoResults = await _database.query(TodoTableName);
+    final todoResults = await _database.query(TodoTableName);
     return todoResults.map((todo) => Todo.fromJson(todo)).toList();
   }
 
   /// Adds a new todo into the database
-  Future addTodo({String title, String description}) async {
+  Future addTodo({required String title, String? description}) async {
     try {
       await _database.insert(
           TodoTableName,
@@ -49,7 +49,10 @@ class DatabaseService {
   }
 
   /// Updates todo completed value
-  Future updateCompleteForTodo({int id, bool complete}) async {
+  Future updateCompleteForTodo({
+    required int id,
+    required bool complete,
+  }) async {
     try {
       await _database.update(
           TodoTableName,
