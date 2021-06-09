@@ -1,3 +1,7 @@
+## 2.0.0-nullsafety.1
+
+- Updated `get_it` to version 7.1.3
+
 ## 2.0.0-nullsafety.0
 
 - Add nullsafety
